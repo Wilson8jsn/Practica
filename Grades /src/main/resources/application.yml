@@ -1,0 +1,30 @@
+server:
+  port: 0
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: grade-ms
+  # Configuración de Flyway para migraciones de base de datos
+  flyway:
+    enabled: true
+    baselineVersion: 1
+    locations:
+      - classpath:db/migration
+    sqlMigrationSuffixes: .sql
+    baselineOnMigrate: true
+    sqlMigrationPrefix: V
+    schemas: public
+  # Configuración de conexión a la base de datos PostgreSQL
+  datasource:
+    url: jdbc:postgresql://kala.db.elephantsql.com:5432/quzpggoe?socketTimeout=3
+    username: quzpggoe
+    password: nV11u0W6WVnDUTHzWl5r3ve4rVX_O0ub
+    driverClassName: org.postgresql.Driver
+
+# Configuración para registrar esta API en Eureka
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
